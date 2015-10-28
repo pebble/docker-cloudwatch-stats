@@ -39,7 +39,7 @@ current cpu/disk metrics of host EC2 instance to cloudwatch.
     WantedBy=timers.target
     ```
 
-2. Start systemd Timer
+2. Start systemd timer
 
     ```
     systemctl start $PWD/docker-cloudwatch.timer
