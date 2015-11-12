@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.2
 
-RUN apk --update add coreutils py-pip && pip install cloudwatchmon
+RUN apk --update add coreutils py-pip && pip install git+https://github.com/pebble/cloudwatch-mon-scripts-python.git@master
 
 CMD sed '1d' -i /etc/mtab && /usr/bin/mon-put-instance-stats.py \
     --mem-util \
