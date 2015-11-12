@@ -23,7 +23,7 @@ current cpu/disk metrics of host EC2 instance to cloudwatch.
     ExecStartPre=-/usr/bin/docker kill cloudwatch-stats
     ExecStartPre=-/usr/bin/docker rm cloudwatch-stats
     ExecStartPre=-/usr/bin/docker pull pebbletech/cloudwatch-stats
-    ExecStart=/usr/bin/docker run -e "ASG=$(fleetctl list-machines -l | grep $(cat /etc/machine-id) | sed 's/.*service=//g')" --name cloudwatch-stats --privileged --rm pebbletech/cloudwatch-stats
+    ExecStart=/bin/sh -c '/usr/bin/docker run -e ASG=$(source /etc/profile; fleetctl list-machines -l | grep $(cat /etc/machine-id) | sed 's/.*service=//g') pebbletech/cloudwatch-stats'
     ```
 
     ### docker-cloudwatch.timer
