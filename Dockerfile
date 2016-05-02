@@ -5,7 +5,7 @@ RUN apk --update add \
     git \
     py-pip \
     && pip install git+https://github.com/pebble/cloudwatch-mon-scripts-python.git@master \
-    && apk del py-pip \
+    && apk del py-pip git \
     && rm -rf /var/cache/apk/* 
 
 CMD sed '1d' -i /etc/mtab && /usr/bin/mon-put-instance-stats.py \
