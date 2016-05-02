@@ -2,6 +2,7 @@ FROM alpine:3.3
 
 RUN apk --update add \
     coreutils \
+    git \
     py-pip \
     && pip install git+https://github.com/pebble/cloudwatch-mon-scripts-python.git@master \
     && apk del py-pip \
