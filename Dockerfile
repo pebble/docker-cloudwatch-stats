@@ -3,6 +3,7 @@ FROM alpine:3.3
 RUN apk --update add \
     coreutils \
     py-pip \
+    python \
     && pip install https://github.com/pebble/cloudwatch-mon-scripts-python/tarball/master\#egg\=cloudwatchmon-2.0.3 \
     && apk del py-pip \
     && rm -rf /var/cache/apk/* 
