@@ -4,7 +4,6 @@ RUN apk --update add \
     coreutils \
     py-pip \
     && pip install https://github.com/pebble/cloudwatch-mon-scripts-python/tarball/master\#egg\=cloudwatchmon-2.0.3 \
-    && apk del py-pip \
     && rm -rf /var/cache/apk/* 
 
 CMD sed '1d' -i /etc/mtab && /usr/bin/mon-put-instance-stats.py \
