@@ -6,7 +6,7 @@ RUN apk --update add \
     git \
     && pip install git+https://github.com/pebble/cloudwatch-mon-scripts-python.git@master
 
-CMD sed '1d' -i /etc/mtab && /usr/bin/mon-put-instance-stats.py \
+CMD /usr/bin/mon-put-instance-stats.py \
     --mem-util \
     --disk-space-util \
     --disk-path=/ \
