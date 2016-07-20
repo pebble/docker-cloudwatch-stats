@@ -1,7 +1,6 @@
 # Docker Cloudwatch Stats #
 
-Standalone container intended to be run via cron/systemd.timer that reports
-current cpu/disk metrics of host EC2 instance to cloudwatch.
+Standalone container that reports current cpu/disk metrics of host EC2 instance to cloudwatch.
 
 ## Server Dependencies ##
 
@@ -9,7 +8,7 @@ current cpu/disk metrics of host EC2 instance to cloudwatch.
 
 ## Usage ##
 
-1. Create systemd unit and timer:
+1. Create systemd unit:
 
     ### docker-cloudwatch.service
     ```
@@ -26,21 +25,8 @@ current cpu/disk metrics of host EC2 instance to cloudwatch.
     ExecStart=/bin/sh -c '/usr/bin/docker run -e ASG=$(source /etc/profile; fleetctl list-machines -l | grep $(cat /etc/machine-id) | sed 's/.*service=//g') pebbletech/cloudwatch-stats'
     ```
 
-    ### docker-cloudwatch.timer
-    ```
-    [Unit]
-    Description=Run CloudWatch monitor every minute
-    
-    [Timer]
-    OnCalendar=*:0/1
-    Persistent=true
-    
-    [Install]
-    WantedBy=timers.target
-    ```
-
-2. Start systemd timer
+2. Start systemd unit
 
     ```
-    systemctl start $PWD/docker-cloudwatch.timer
+    systemctl start $PWD/docker-cloudwatch.service
     ```
