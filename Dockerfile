@@ -11,4 +11,5 @@ CMD sed '1d' -i /etc/mtab && /usr/bin/mon-put-instance-stats.py \
     --disk-space-util \
     --disk-path=/ \
     --auto-scaling \
-    --auto-scaling-group=$ASG
+    --auto-scaling-group=$ASG \
+    --persistent
